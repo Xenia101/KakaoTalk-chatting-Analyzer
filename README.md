@@ -17,9 +17,12 @@
 - 채팅방 유저
   - 현재 채팅방 기준으로 모든 유저 목록을 보여줍니다.
   
-- 채팅 시간
+- 주요 채팅 시간
   - 오전 / 오후를 나눠서 백분율로 통계 내줍니다.
 
+- Word Cloud 생성
+  - Text 분석 후 Word Cloud 를 생성해줍니다.
+  
 ## 실행 환경
 - Windows 10 or Ubuntu Linux
 - Python 3.x
