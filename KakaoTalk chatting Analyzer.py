@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+
+import matplotlib.pyplot as plt
 from konlpy.tag import Twitter
 import re
 
@@ -11,7 +13,7 @@ def read_f():
     lines_no_emoji = []
     
     # read kakao chat text file
-    filename = './input/sample.txt'
+    filename = './input/KakaoTalk_20191228_2200_19_145_group.txt'
     f = open(filename, 'r', encoding="utf-8")
 
     if 'group' in filename:
@@ -72,13 +74,21 @@ def all_userlist():
         if ('오전' in x) or ('오후' in x):
             All_username.remove(x)
     return All_username
-        
+
+def pie_graph():
+    # Categorized by Chat Time
+    print("\n- Chatting times [AM(%), PM(%)]")
+    print(chat_time(date.count('오전'), date.count('오후')))
+
+    pi_names = ['AM', 'PM']
+    plt.pie(chat_time(date.count('오전'), date.count('오후')), labels=pi_names, autopct='%1.2f%%')
+    plt.title("Categorized by Chat Time")
+    plt.show()
+
 if __name__ == "__main__":
     edit_text(read_f())
 
     print("- All user name ({})".format(len(all_userlist())))
-    for x in all_userlist():
-        print(x)
+    print(x for x in all_userlist())
 
-    print("\n- Chatting times [AM(%), PM(%)]")
-    print(chat_time(date.count('오전'), date.count('오후')))
+    pie_graph()
