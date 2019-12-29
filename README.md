@@ -17,30 +17,30 @@
 - 채팅방 유저
   - 현재 채팅방 기준으로 모든 유저 목록을 보여줍니다.
   
-    ```python
-    print(x for x in all_userlist())
-    ```
+  ```python
+  print(x for x in all_userlist())
+  ```
   
-    ```
-    - All user name (3) # Number of Users
-    user A
-    user B
-    user C
-    ```
+  ```
+  - All user name (3) # Number of Users
+  user A
+  user B
+  user C
+  ```
   
 - 주요 채팅 시간
   - 오전 / 오후를 나눠서 백분율로 통계 내줍니다.
   
-    ```python
-      pi_names = ['AM', 'PM']
-      plt.pie(chat_time(date.count('오전'), date.count('오후')), labels=pi_names, autopct='%1.2f%%')
-      plt.title("Categorized by Chat Time")
-      plt.show()
-    ```
+  ```python
+    pi_names = ['AM', 'PM']
+    plt.pie(chat_time(date.count('오전'), date.count('오후')), labels=pi_names, autopct='%1.2f%%')
+    plt.title("Categorized by Chat Time")
+    plt.show()
+  ```
     
-    <p align=center>
-      <img src="https://github.com/Xenia101/KakaoTalk-chatting-Analyzer/blob/master/img/pie%20graph.PNG?raw=true">
-    </p>
+  <p align=center>
+    <img src="https://github.com/Xenia101/KakaoTalk-chatting-Analyzer/blob/master/img/pie%20graph.PNG?raw=true">
+  </p>
 
 - Word Cloud 생성
   - Text 분석 후 Word Cloud 를 생성해줍니다.
