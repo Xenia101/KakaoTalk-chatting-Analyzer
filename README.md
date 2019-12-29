@@ -17,6 +17,17 @@
 - 채팅방 유저
   - 현재 채팅방 기준으로 모든 유저 목록을 보여줍니다.
   
+  ```python
+  print(x for x in all_userlist())
+  ```
+  
+  ```
+  - All user name (3) # User Count
+  user A
+  user B
+  user C
+  ```
+  
 - 주요 채팅 시간
   - 오전 / 오후를 나눠서 백분율로 통계 내줍니다.
 
