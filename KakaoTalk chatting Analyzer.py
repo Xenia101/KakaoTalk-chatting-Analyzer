@@ -53,12 +53,14 @@ def edit_text(lines):
             msg_start_p = p.match(x).end()
             user.append(list(p.findall(x))[0][0])
             date.append(list(p.findall(x))[0][1])
-            msg_.append(x[msg_start_p:].replace('\n', ''))
+            msg_.append(x[msg_start_p:].replace('\n', '').strip())
         except:
             pass
     # edit list
     user = [x.replace('[','').replace(']','') for x in user]
     date = [x.replace('[','').replace(']','').split(' ')[0] for x in date]
+    for x in msg_:
+        print(x)
 
 def chat_time(s,n):
     total = s+n
@@ -73,7 +75,7 @@ def all_userlist():
     for x in All_username:
         if ('오전' in x) or ('오후' in x):
             All_username.remove(x)
-    return All_username
+    return Azll_username
 
 def pie_graph():
     # Categorized by Chat Time
