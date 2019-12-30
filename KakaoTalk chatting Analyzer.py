@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import matplotlib.pyplot as plt
+from collections import Counter
 from konlpy.tag import Twitter
 import re
 
-#twitter = Twitter()
 user = []
 date = []
 msg_ = []
@@ -13,7 +13,7 @@ def read_f():
     lines_no_emoji = []
     
     # read kakao chat text file
-    filename = './input/KakaoTalk_20191228_2200_19_145_group.txt'
+    filename = './input/a.txt'
     f = open(filename, 'r', encoding="utf-8")
 
     if 'group' in filename:
@@ -59,8 +59,8 @@ def edit_text(lines):
     # edit list
     user = [x.replace('[','').replace(']','') for x in user]
     date = [x.replace('[','').replace(']','').split(' ')[0] for x in date]
-    for x in msg_:
-        print(x)
+
+    return msg_
 
 def chat_time(s,n):
     total = s+n
@@ -75,7 +75,7 @@ def all_userlist():
     for x in All_username:
         if ('오전' in x) or ('오후' in x):
             All_username.remove(x)
-    return Azll_username
+    return All_username
 
 def pie_graph():
     # Categorized by Chat Time
@@ -87,10 +87,33 @@ def pie_graph():
     plt.title("Categorized by Chat Time")
     plt.show()
 
-if __name__ == "__main__":
-    edit_text(read_f())
+def analysis(msg):
+    twitter = Twitter()
+    sentences_tag = []
+    
+    for sentence in msg:
+        m = twitter.pos(sentence)
+        sentences_tag.append(m)
 
-    print("- All user name ({})".format(len(all_userlist())))
-    print(x for x in all_userlist())
+    noun_adj = []
+    for sentence in sentences_tag:
+        for word, tag in sentence:
+            if tag in ['Noun', 'Adjective']: # Only Noun or Adjective 
+                if word == '사진' or word == '이모티콘' or word == '동영상':
+                    pass
+                else:
+                    noun_adj.append(word)
+    count_list = Counter(noun_adj)
+
+    print("- Most Common Noun,adj (word, counts)")
+    for x in count_list.most_common(10):
+        print(x)
+
+if __name__ == "__main__":
+    analysis(edit_text(read_f()))
+
+    print("\n- All user name ({})".format(len(all_userlist())))
+    for x in all_userlist():
+        print(x)
 
     pie_graph()
