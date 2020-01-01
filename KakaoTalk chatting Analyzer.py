@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import matplotlib.pyplot as plt
 from collections import Counter
 from wordcloud import WordCloud
@@ -12,16 +11,13 @@ msg_ = []
 
 def read_f():
     lines_no_emoji = []
-    
     # read kakao chat text file
     filename = './input/a.txt'
     f = open(filename, 'r', encoding="utf-8")
-
     if 'group' in filename:
         lines = f.readlines()[5:]
     else:
         lines = f.readlines()[3:]
-        
     for x in lines:
         emoji_pattern = re.compile("["
                                    u"\U0001F600-\U0001F64F"  # emoticons
@@ -30,9 +26,7 @@ def read_f():
                                    u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
                                    "]+", flags=re.UNICODE) 
         x = emoji_pattern.sub(r'', x)
-
         lines_no_emoji.append(str(x))
-
     return lines_no_emoji
 
 def edit_text(lines):
@@ -40,13 +34,11 @@ def edit_text(lines):
     global user
     global date
     global msg_
-    
     # remove date in list
     p = re.compile("(['-*-'].['-*-'])")
     for x in lines:
         if p.match(x) is not None:
             lines.remove(x)
-
     # split
     p = re.compile("(\[.*\]) (\[.*\])")
     for x in lines:
@@ -60,7 +52,6 @@ def edit_text(lines):
     # edit list
     user = [x.replace('[','').replace(']','') for x in user]
     date = [x.replace('[','').replace(']','').split(' ')[0] for x in date]
-
     return msg_
 
 def chat_time(s,n):
@@ -84,20 +75,18 @@ def pie_graph():
     print(chat_time(date.count('오전'), date.count('오후')))
 
     pi_names = ['AM', 'PM']
-    plt.subplot(221)
+    plt.subplot(121)
     plt.pie(chat_time(date.count('오전'), date.count('오후')), labels=pi_names, autopct='%1.2f%%')
     plt.title("Categorized by Chat Time")
-    plt.show()
 
 def analysis(msg):
     twitter = Twitter()
     sentences_tag = []
+    noun_adj = []
     
     for sentence in msg:
         m = twitter.pos(sentence)
         sentences_tag.append(m)
-
-    noun_adj = []
     for sentence in sentences_tag:
         for word, tag in sentence:
             if tag in ['Noun', 'Adjective']: # Only Noun or Adjective 
@@ -110,26 +99,23 @@ def analysis(msg):
     print("- Most Common Noun,adj (word, counts)")
     for x in count_list.most_common(10):
         print(x)
-    
     return count_list
+
 def wordcloud(word):
     wordcloud = WordCloud(
         font_path='fonts/NanumBarunGothicLight.ttf',
         background_color='white'
     ).generate(' '.join(word))
-
     pie_graph()
-    plt.subplot(222)
+    plt.subplot(122)
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
     plt.show()
     
 if __name__ == "__main__":
     mk_msg = edit_text(read_f())
-
     print("\n- All user name ({})".format(len(all_userlist())))
     for x in all_userlist():
         print(x)
-        
     wordcloud(analysis(mk_msg))
 
