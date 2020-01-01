@@ -64,6 +64,11 @@
 - Word Cloud 생성
   - Text 분석 후 Word Cloud 를 생성해줍니다.
   
+  - 예시 이미지
+  
+  <p align=center>
+    <img src="https://github.com/Xenia101/KakaoTalk-chatting-Analyzer/blob/master/img/wikiTag_cloud.png?raw=true">
+  </p>
   
 ## 실행 환경
 - Windows 10 or Ubuntu Linux
