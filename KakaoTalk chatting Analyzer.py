@@ -2,6 +2,7 @@
 
 import matplotlib.pyplot as plt
 from collections import Counter
+from wordcloud import WordCloud
 from konlpy.tag import Twitter
 import re
 
@@ -108,12 +109,16 @@ def analysis(msg):
     print("- Most Common Noun,adj (word, counts)")
     for x in count_list.most_common(10):
         print(x)
+    
+    return count_list
 
 if __name__ == "__main__":
-    analysis(edit_text(read_f()))
+    mk_msg = edit_text(read_f())
 
     print("\n- All user name ({})".format(len(all_userlist())))
     for x in all_userlist():
         print(x)
-
+        
+    wordcloud(analysis(mk_msg))
+    
     pie_graph()
