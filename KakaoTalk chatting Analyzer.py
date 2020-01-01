@@ -84,6 +84,7 @@ def pie_graph():
     print(chat_time(date.count('오전'), date.count('오후')))
 
     pi_names = ['AM', 'PM']
+    plt.subplot(221)
     plt.pie(chat_time(date.count('오전'), date.count('오후')), labels=pi_names, autopct='%1.2f%%')
     plt.title("Categorized by Chat Time")
     plt.show()
@@ -111,7 +112,18 @@ def analysis(msg):
         print(x)
     
     return count_list
+def wordcloud(word):
+    wordcloud = WordCloud(
+        font_path='fonts/NanumBarunGothicLight.ttf',
+        background_color='white'
+    ).generate(' '.join(word))
 
+    pie_graph()
+    plt.subplot(222)
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis("off")
+    plt.show()
+    
 if __name__ == "__main__":
     mk_msg = edit_text(read_f())
 
@@ -120,5 +132,4 @@ if __name__ == "__main__":
         print(x)
         
     wordcloud(analysis(mk_msg))
-    
-    pie_graph()
+
