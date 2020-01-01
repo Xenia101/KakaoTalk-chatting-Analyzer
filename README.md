@@ -41,7 +41,7 @@
   ```
     
   <p align=center>
-    <img src="https://github.com/Xenia101/KakaoTalk-chatting-Analyzer/blob/master/img/pie%20graph.PNG?raw=true">
+    <img width="40%" src="https://github.com/Xenia101/KakaoTalk-chatting-Analyzer/blob/master/img/pie%20graph.PNG?raw=true">
   </p>
 
 - 형태소 분석
@@ -67,7 +67,7 @@
   - 예시 이미지
   
   <p align=center>
-    <img src="https://github.com/Xenia101/KakaoTalk-chatting-Analyzer/blob/master/img/wikiTag_cloud.png?raw=true">
+    <img width="70%" src="https://github.com/Xenia101/KakaoTalk-chatting-Analyzer/blob/master/img/wikiTag_cloud.png?raw=true">
   </p>
   
 ## 실행 환경
