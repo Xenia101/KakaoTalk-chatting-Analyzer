@@ -74,7 +74,7 @@
 - Windows 10 or Ubuntu Linux
 - Python 3.x
 
-## 사용 방법
+## Usage
 
 ### GET KakaoTalk Chatting Log (PC)
 
